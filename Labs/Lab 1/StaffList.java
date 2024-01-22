@@ -6,7 +6,7 @@ import java.util.Collections;
 public class StaffList
 {
     // Storage for an arbitrary number of details.
-    private ArrayList <Staff> staffList;
+    private final ArrayList <Staff> staffList;
 
     /**
      * Perform any initialization for the address book.
@@ -19,7 +19,7 @@ public class StaffList
     /**
      * Look up an id and return the
      * corresponding staff details.
-     * @param idThe id  to be looked up.
+     * @param id The id  to be looked up.
      * @return The details corresponding to the id, null if none
      */
     public Staff findById(String id)
@@ -33,8 +33,6 @@ public class StaffList
     	}
     	return null;
     }
-    
-
 
     /**
      * Add a new set of details to the list
@@ -113,7 +111,7 @@ public class StaffList
      */
     public String listByName()
     {
-    	Collections.sort(staffList, new StaffNameComparator());
+    	staffList.sort(new StaffNameComparator());
     	return listDetails();
     }
     

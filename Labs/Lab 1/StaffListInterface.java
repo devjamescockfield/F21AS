@@ -3,8 +3,8 @@ import java.util.InputMismatchException;
 import java.io.*;
 public class StaffListInterface
 {
-	private Scanner scanner;
-    private StaffList allStaff;
+	private final Scanner scanner;
+    private final StaffList allStaff;
    
     public StaffListInterface(StaffList list)
     {

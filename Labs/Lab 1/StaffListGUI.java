@@ -9,7 +9,7 @@ import javax.swing.*;
 public class StaffListGUI extends JFrame implements ActionListener
 {
     // The staff list to be searched.
-    private StaffList staffList;
+    private final StaffList staffList;
     
     //GUI components
     JTextField result;
@@ -84,7 +84,7 @@ public class StaffListGUI extends JFrame implements ActionListener
 	    	//get search text and search staff list
 	    	//setting result text if found
 	        String searchString = searchField.getText().trim();
-	        if(searchString.length() > 0) {
+	        if(!searchString.isEmpty()) {
 	            Staff person = staffList.findById(searchString);
 	            if (person != null )
 	            	result.setText(person.toString());

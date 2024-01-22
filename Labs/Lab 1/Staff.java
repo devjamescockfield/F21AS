@@ -2,9 +2,9 @@
 //(id, name, hours)
 public class Staff implements Comparable<Staff>
 {
-	private String id;
-    private String name;
-    private int hoursWorked;
+	private final String id;
+    private final String name;
+    private final int hoursWorked;
 
     /**
      * Set up the contact details. All details are trimmed to remove
@@ -15,12 +15,12 @@ public class Staff implements Comparable<Staff>
     public Staff(String id, String name, int hoursWorked)
     {   
     	//id and name MUSt be provided
-        if( name.trim().length() ==0|| id.trim().length()== 0)    
+        if(name.trim().isEmpty() || id.trim().isEmpty())
         {
           throw new IllegalStateException(
              "Cannot have blank id or name");
         }
-        this.id =id.trim();
+        this.id = id.trim();
         this.name = name.trim();
         this.hoursWorked = hoursWorked;
     }

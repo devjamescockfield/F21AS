@@ -6,8 +6,8 @@ import java.io.*;
 
 public class StaffListDemo
 {
-    private StaffList entries;
-    private StaffListInterface interaction;
+    private final StaffList entries;
+    private final StaffListInterface interaction;
 	private StaffListGUI gui;
 
 
@@ -17,45 +17,33 @@ public class StaffListDemo
         entries = new StaffList();
         //this will handle text interaction with user
         interaction = new StaffListInterface(entries);
-        BufferedReader buff = null;
-    	String data [] = new String[3];
-        try {
-        	buff = new BufferedReader(new FileReader("StaffList.txt"));
-	    	String inputLine = buff.readLine();  //read first line
-	    	while(inputLine != null){  
-	    		//split line into parts
-	    		data  = inputLine.split(";");
-	    		//create staff object
-	    		int hours = Integer.parseInt(data[2].trim());
-	    		Staff s = new Staff(data[0], data[1], hours);
-	    		//add to list
-	            entries.addDetails(s);
-	            //read next line
-	            inputLine = buff.readLine();
-	            
-	        }
-        }
-        catch(FileNotFoundException e) {
-        	System.out.println(e.getMessage());
+        String[] data = new String[3];
+        try (BufferedReader buff = new BufferedReader(new FileReader("StaffList.txt"))) {
+            String inputLine = buff.readLine();  //read first line
+            while (inputLine != null) {
+                //split line into parts
+                data = inputLine.split(";");
+                //create staff object
+                int hours = Integer.parseInt(data[2].trim());
+                Staff s = new Staff(data[0], data[1], hours);
+                //add to list
+                entries.addDetails(s);
+                //read next line
+                inputLine = buff.readLine();
+
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+            System.exit(1);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
+        } catch (NumberFormatException nfe) {
+            System.out.println(data[0] + ": Hours worked not a number :" + data[2]);
+            System.out.println("Program stopped");
             System.exit(1);
         }
-        catch (IOException e) {
-        	e.printStackTrace();
-            System.exit(1);        	
-        }
-        catch (NumberFormatException nfe) {
-        	System.out.println(data[0] + ": Hours worked not a number :" + data[2]);
-        	System.out.println("Program stopped");
-        	System.exit(1);
-        }
-        finally  {
-        	try{
-        		buff.close();
-        	}
-        	catch (IOException ioe) {
-        		//don't do anything
-        	}
-        }
+        //don't do anything
     }
 
     /**

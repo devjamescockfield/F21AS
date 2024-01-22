@@ -40,6 +40,15 @@ public class StaffList
      */
     public void addDetails(Staff details) throws DuplicateIDException
     {
+        // Checking for null in addDetails method is necessary
+        // to ensure that a null Staff object is not added to the staffList.
+        // Yes, it is a good idea. It prevents the addition of null entries
+        // in the staffList, avoiding NullPointerException in future operations.
+        // Yes, it's a good practice to check for null parameters in the Staff
+        // constructor to ensure the object is properly initialized with valid data.
+        // In the Staff constructor, it is appropriate to check for null or empty values for 'id' and 'name'.
+        // 'hoursWorked' is an int and cannot be null.
+        
     	if (details == null )
     		throw new IllegalArgumentException();
     	else {
@@ -70,7 +79,6 @@ public class StaffList
      */
     private int findIndex(String id)
     {
-    	
     	int size =staffList.size();
     	for (int i = 0; i < size; i++)
     	{

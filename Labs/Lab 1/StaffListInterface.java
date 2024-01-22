@@ -16,8 +16,7 @@ public class StaffListInterface
      * Read a series of commands from the user to interact
      * with the address book. Stop when the user types 'quit'.
      */
-    public void run()
-    {
+    public void run() throws NoMatchingIDException {
         System.out.println("StaffList");
         System.out.println("Type 'help' for a list of commands.");
         
@@ -90,7 +89,7 @@ public class StaffListInterface
         System.out.println(message);
     }
     
-    private void remove() {
+    private void remove() throws NoMatchingIDException {
     	System.out.println("Enter ID of person to be removed: ");
     	String id = scanner.nextLine();
         allStaff.removeDetails(id);

@@ -61,8 +61,7 @@ public class StaffListDemo
     /**
      * Allow the user to interact with the staff list.
      */
-    public void showInterface()
-    {
+    public void showInterface() throws NoMatchingIDException {
         interaction.run();
     }
     
@@ -74,7 +73,7 @@ public class StaffListDemo
         gui.setVisible(true);
     }     
     
-    public static void main (String arg[]) throws DuplicateIDException {
+    public static void main (String arg[]) throws DuplicateIDException, NoMatchingIDException {
        	//creates demo object, with a populated staff list
     	StaffListDemo sld = new StaffListDemo();   
     	

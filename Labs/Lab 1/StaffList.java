@@ -57,11 +57,13 @@ public class StaffList
      * remove Staff object identified by this ID
      * @param id the ID identifying the person to be removed
      */
-    public void removeDetails(String id)  {
+    public void removeDetails(String id) throws NoMatchingIDException {
     	int index = findIndex(id);
     	if (index != -1) {
     		staffList.remove(index);
-    	}
+    	} else {
+            throw new NoMatchingIDException(id);
+        }
     }
     /**
      * Look up an id and return index

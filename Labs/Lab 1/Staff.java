@@ -14,12 +14,30 @@ public class Staff implements Comparable<Staff>
      */
     public Staff(String id, String name, int hoursWorked)
     {   
-    	//id and name MUSt be provided
-        if(name.trim().isEmpty() || id.trim().isEmpty())
-        {
-          throw new IllegalStateException(
-             "Cannot have blank id or name");
+    	if (id == null || id.trim().isEmpty()) {
+            throw new IllegalArgumentException("ID cannot be null or blank");
         }
+        if (!id.matches("[A-Z]\\d+")) {
+            throw new IllegalArgumentException("Invalid ID format: " + id);
+        }
+        if (id.length() > 10) { // Example length check
+            throw new IllegalArgumentException("ID too long: " + id);
+        }
+
+        if (name == null || name.trim().isEmpty()) {
+            throw new IllegalArgumentException("Name cannot be null or blank");
+        }
+        if (!name.matches("[A-Za-z-\\s]+")) {
+            throw new IllegalArgumentException("Invalid name format: " + name);
+        }
+        if (name.length() > 50) { // Example length check
+            throw new IllegalArgumentException("Name too long: " + name);
+        }
+
+        if (hoursWorked < 0 || hoursWorked > 80) { // Assuming 80 hours as a realistic maximum
+            throw new IllegalArgumentException("Invalid number of hours: " + hoursWorked);
+        }
+
         this.id = id.trim();
         this.name = name.trim();
         this.hoursWorked = hoursWorked;

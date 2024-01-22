@@ -48,7 +48,7 @@ public class StaffList
         // constructor to ensure the object is properly initialized with valid data.
         // In the Staff constructor, it is appropriate to check for null or empty values for 'id' and 'name'.
         // 'hoursWorked' is an int and cannot be null.
-        
+
     	if (details == null )
     		throw new IllegalArgumentException();
     	else {
